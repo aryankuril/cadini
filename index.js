@@ -3,8 +3,6 @@ function toggleMenu() {
   menu.classList.toggle("show");
 }
 
-
-
 // Initial load animation for hero text
 gsap.from(".hero-text", {
   opacity: 0,
@@ -18,73 +16,6 @@ gsap.from(".hero-text", {
 // Hide logo initially
 gsap.set(".logo-center", { scale: 0, opacity: 0 });
 
-// Second section line animations – initial state
-// gsap.set(".line1", { x: -150, opacity: 0 });
-// gsap.set(".line2", { x: 150, opacity: 0 });
-// gsap.set(".line3", { x: 150, opacity: 0 });
-
-// Animate second section lines on scroll into view
-// Animate second section lines on scroll into/out of view
-const secondObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    // if (entry.isIntersecting) {
-    //   // Animate lines in
-    //   gsap.to(".line1", {
-    //     x: 0,
-    //     opacity: 1,
-    //     duration: 1.3,
-    //     ease: "expo.out",
-    //     overwrite: "auto"
-    //   });
-    //   gsap.to(".line2", {
-    //     x: 0,
-    //     opacity: 1,
-    //     duration: 1.3,
-    //     delay: 0.4,
-    //     ease: "expo.out",
-    //     overwrite: "auto"
-    //   });
-    //   gsap.to(".line3", {
-    //     x: 0,
-    //     opacity: 1,
-    //     duration: 1.3,
-    //     delay: 0.8,
-    //     ease: "expo.in",
-    //     overwrite: "auto"
-    //   });
-    // } else {
-    //   // Animate lines out (reverse effect)
-    //   gsap.to(".line3", {
-    //     x: 150,
-    //     opacity: 0,
-    //     duration: 1.3,
-    //     ease: "expo.in",
-    //     overwrite: "auto"
-    //   });
-    //   gsap.to(".line2", {
-    //     x: 150,
-    //     opacity: 0,
-    //     duration: 1.3,
-    //     delay: 0.4,
-    //     ease: "expo.in",
-    //     overwrite: "auto"
-    //   });
-    //   gsap.to(".line1", {
-    //     x: -150,
-    //     opacity: 0,
-    //     duration: 1.3,
-    //     delay: 0.8,
-    //     ease: "expo.in",
-    //     overwrite: "auto"
-    //   });
-    // }
-  });
-}, {
-  threshold: 0.5
-});
-secondObserver.observe(document.querySelector('.secondsection'));
-
-
 // Scroll-based effects
 window.addEventListener("scroll", () => {
   const scrollY = window.scrollY;
@@ -95,16 +26,16 @@ window.addEventListener("scroll", () => {
 
   const scaleValue = Math.max(1 - scrollY / 500, 0.5);
 
-  // Navbar show/hide
+  // Navbar hide/show based on scroll
   const heroTop = heroText.getBoundingClientRect().top;
   gsap.to(".navbar", {
     y: heroTop <= 0 ? 0 : -100,
-    duration: 0.7,             // increased duration for smoother transition
-    ease: "power3.out",        // smoother easing
+    duration: 0.9,
+    ease: "expo.out",
     overwrite: "auto"
   });
 
-  // 🧩 Bottle Movement
+  // Smooth bottle scroll movement
   const heroTopAbs = hero.offsetTop;
   const secondTopAbs = secondSection.offsetTop;
   const heroHeight = hero.offsetHeight;
@@ -119,50 +50,46 @@ window.addEventListener("scroll", () => {
   const moveDistance = secondTargetY - heroCenter;
 
   let progress = (scrollY - scrollStart - 100) / scrollRange;
-  progress = Math.min(Math.max(progress, 0), 1); // Clamp between 0 and 1
+  progress = Math.min(Math.max(progress, 0), 1); // Clamp
 
   const translateY = moveDistance * progress - 80;
 
   gsap.to(bottle, {
     y: translateY,
-    duration: 0.7,             // increased duration for smoother movement
-    ease: "power3.out",
+    duration: 1,
+    ease: "expo.out",
     overwrite: "auto"
   });
 
-  // Hero text scale on scroll
+  // Smooth scale-down hero text
   gsap.to(".hero-text", {
     scale: scaleValue,
-    duration: 0.7,             // increased duration for smooth scaling
-    ease: "power3.out",
+    duration: 0.8,
+    ease: "expo.out",
     overwrite: "auto"
   });
 
-  // 🔥 Zoom-out and fade-out hero-text + zoom-in logo-center
+  // Hero zoom out + logo fade/zoom in
   const triggerStart = 50;
   const triggerEnd = 200;
   let logoProgress = (scrollY - triggerStart) / (triggerEnd - triggerStart);
-  logoProgress = Math.min(Math.max(logoProgress, 0), 1); // Clamp 0-1
+  logoProgress = Math.min(Math.max(logoProgress, 0), 1); // Clamp
 
   gsap.to(".hero-text", {
     y: -logoProgress * 100,
     scale: 1 - logoProgress * 0.99,
     opacity: 1 - logoProgress,
-    duration: 0.5,             // increased duration for smoother fade
-    ease: "power3.out",
+    duration: 0.8,
+    ease: "power4.out",
     overwrite: "auto"
   });
 
   gsap.to(".logo-center", {
     scale: logoProgress,
     opacity: logoProgress,
-    duration: 0.5,
-    ease: "power3.out",
+    duration: 0.8,
+    ease: "power4.out",
     overwrite: "auto"
   });
 });
-
-
-
-
-
+ 
