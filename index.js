@@ -121,7 +121,7 @@ window.addEventListener("scroll", () => {
   let progress = (scrollY - scrollStart - 100) / scrollRange;
   progress = Math.min(Math.max(progress, 0), 1); // Clamp between 0 and 1
 
-  const translateY = moveDistance * progress;
+  const translateY = moveDistance * progress - 80;
 
   gsap.to(bottle, {
     y: translateY,
