@@ -93,6 +93,12 @@ window.addEventListener("scroll", () => {
   const heroText = document.querySelector(".hero-text");
   const bottle = document.querySelector(".bottle");
 
+    // Place this at the top, outside the scroll listener, only once
+const smoothBottleY = gsap.quickTo(".bottle", "y", {
+  duration: 0.6,
+  ease: "power3.out"
+});
+
   const scaleValue = Math.max(1 - scrollY / 500, 0.5);
 
   // Navbar show/hide
@@ -104,11 +110,19 @@ window.addEventListener("scroll", () => {
     overwrite: "auto"
   });
 
+
+
   // 🧩 Bottle Movement
-  const heroTopAbs = hero.offsetTop;
-  const secondTopAbs = secondSection.offsetTop;
-  const heroHeight = hero.offsetHeight;
-  const secondHeight = secondSection.offsetHeight;
+let heroTopAbs, secondTopAbs, heroHeight, secondHeight;
+function updateSectionPositions() {
+  heroTopAbs = hero.offsetTop;
+  secondTopAbs = secondSection.offsetTop;
+  heroHeight = hero.offsetHeight;
+  secondHeight = secondSection.offsetHeight;
+}
+window.addEventListener('resize', updateSectionPositions);
+updateSectionPositions(); // initial call
+ 
 
   const heroCenter = heroTopAbs + heroHeight / 4;
   const secondTargetY = secondTopAbs + secondHeight / 2 + 100;
@@ -123,12 +137,10 @@ window.addEventListener("scroll", () => {
 
   const translateY = moveDistance * progress - 80;
 
-  gsap.to(bottle, {
-    y: translateY,
-    duration: 0.7,             // increased duration for smoother movement
-    ease: "power3.out",
-    overwrite: "auto"
-  });
+
+// Inside the scroll listener:
+smoothBottleY(translateY);
+
 
   // Hero text scale on scroll
   gsap.to(".hero-text", {
