@@ -1,3 +1,10 @@
+function toggleMenu() {
+  const menu = document.getElementById("mobileMenu");
+  menu.classList.toggle("show");
+}
+
+
+
 // Initial load animation for hero text
 gsap.from(".hero-text", {
   opacity: 0,
@@ -12,65 +19,65 @@ gsap.from(".hero-text", {
 gsap.set(".logo-center", { scale: 0, opacity: 0 });
 
 // Second section line animations – initial state
-gsap.set(".line1", { x: -150, opacity: 0 });
-gsap.set(".line2", { x: 150, opacity: 0 });
-gsap.set(".line3", { x: 150, opacity: 0 });
+// gsap.set(".line1", { x: -150, opacity: 0 });
+// gsap.set(".line2", { x: 150, opacity: 0 });
+// gsap.set(".line3", { x: 150, opacity: 0 });
 
 // Animate second section lines on scroll into view
 // Animate second section lines on scroll into/out of view
 const secondObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      // Animate lines in
-      gsap.to(".line1", {
-        x: 0,
-        opacity: 1,
-        duration: 1.3,
-        ease: "expo.out",
-        overwrite: "auto"
-      });
-      gsap.to(".line2", {
-        x: 0,
-        opacity: 1,
-        duration: 1.3,
-        delay: 0.4,
-        ease: "expo.out",
-        overwrite: "auto"
-      });
-      gsap.to(".line3", {
-        x: 0,
-        opacity: 1,
-        duration: 1.3,
-        delay: 0.8,
-        ease: "expo.in",
-        overwrite: "auto"
-      });
-    } else {
-      // Animate lines out (reverse effect)
-      gsap.to(".line3", {
-        x: 150,
-        opacity: 0,
-        duration: 1.3,
-        ease: "expo.in",
-        overwrite: "auto"
-      });
-      gsap.to(".line2", {
-        x: 150,
-        opacity: 0,
-        duration: 1.3,
-        delay: 0.4,
-        ease: "expo.in",
-        overwrite: "auto"
-      });
-      gsap.to(".line1", {
-        x: -150,
-        opacity: 0,
-        duration: 1.3,
-        delay: 0.8,
-        ease: "expo.in",
-        overwrite: "auto"
-      });
-    }
+    // if (entry.isIntersecting) {
+    //   // Animate lines in
+    //   gsap.to(".line1", {
+    //     x: 0,
+    //     opacity: 1,
+    //     duration: 1.3,
+    //     ease: "expo.out",
+    //     overwrite: "auto"
+    //   });
+    //   gsap.to(".line2", {
+    //     x: 0,
+    //     opacity: 1,
+    //     duration: 1.3,
+    //     delay: 0.4,
+    //     ease: "expo.out",
+    //     overwrite: "auto"
+    //   });
+    //   gsap.to(".line3", {
+    //     x: 0,
+    //     opacity: 1,
+    //     duration: 1.3,
+    //     delay: 0.8,
+    //     ease: "expo.in",
+    //     overwrite: "auto"
+    //   });
+    // } else {
+    //   // Animate lines out (reverse effect)
+    //   gsap.to(".line3", {
+    //     x: 150,
+    //     opacity: 0,
+    //     duration: 1.3,
+    //     ease: "expo.in",
+    //     overwrite: "auto"
+    //   });
+    //   gsap.to(".line2", {
+    //     x: 150,
+    //     opacity: 0,
+    //     duration: 1.3,
+    //     delay: 0.4,
+    //     ease: "expo.in",
+    //     overwrite: "auto"
+    //   });
+    //   gsap.to(".line1", {
+    //     x: -150,
+    //     opacity: 0,
+    //     duration: 1.3,
+    //     delay: 0.8,
+    //     ease: "expo.in",
+    //     overwrite: "auto"
+    //   });
+    // }
   });
 }, {
   threshold: 0.5
@@ -154,3 +161,8 @@ window.addEventListener("scroll", () => {
     overwrite: "auto"
   });
 });
+
+
+
+
+

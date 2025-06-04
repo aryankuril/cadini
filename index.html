@@ -7,18 +7,30 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<header class="navbar">
-  <div class="navbar-top">
-    <img src="img/Cadini Logo black.svg" class="logo-center" />
-  </div>
-  <div class="navbar-divider"></div>
-  <nav class="navbar-links">
-    <a href="#">SHOP</a>
-    <a href="#">ABOUT US</a>
-    <a href="#">PERFUMES</a>
-    <a href="#">CONTACT</a>
-  </nav>
-</header>
+  <div class="first-section">
+    <header class="navbar">
+      <div class="navbar-container">
+        <!-- Hamburger Menu Icon -->
+        <!-- <div class="hamburger" onclick="toggleMenu()">
+          ☰
+        </div> -->
+    
+        <!-- Navigation Links -->
+        <nav class="navbar-links-left" id="mobileMenu">
+          <a href="#">Shop All</a>
+          <a href="#">About Us</a>
+          <a href="#">Perfumes</a>
+          <a href="#">Contact</a>
+        </nav>
+    
+        <!-- Center Logo -->
+        <div class="navbar-logo">
+          <img src="img/Cadini Logo white.svg" alt="Logo" class="logo-center" />
+        </div>
+      </div>
+    </header>
+    
+  
 
 
   <main>
@@ -26,6 +38,7 @@
          <h1 class="hero-text">CADINI</h1>
         </div>
     </main>
+  </div>
     
     <img src="img/icon.svg" alt="Cadini Bottle" class="bottle" />
 
@@ -45,12 +58,20 @@
       </div>
     </div>
     
-    
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
   <script src="index.js"></script>
+
+  <script>
+function toggleMenu() {
+  const menu = document.getElementById("mobileMenu");
+  menu.classList.toggle("show");
+}
+
+
+  </script>
 </body>
 </html>
