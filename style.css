@@ -27,6 +27,7 @@ html {
   background-color: white;
   /* z-index: 500; */
   border-bottom: 1px solid #e0e0e0;
+  transform: translateY(-100%);
 }
 
 .navbar-container {
@@ -147,7 +148,7 @@ html {
 .bottle {
   height: 400px;
   position: absolute;
-  top: 50%;
+  top: 70%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 150;
