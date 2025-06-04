@@ -72,11 +72,10 @@ html {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  
 }
 
 .logo-center {
-  width:200px;
+  height: 50px;
   object-fit: contain;
   display: block;
 }
@@ -152,8 +151,6 @@ html {
   position: absolute;
   top: 70%;
   left: 50%;
-  will-change: transform;
-  /* transform: translateZ(0); */
   transform: translate(-50%, -50%);
   z-index: 150;
 }
@@ -370,8 +367,6 @@ html {
 
   .bottle {
     height: 800px;
-    will-change: transform;
-  transform: translateZ(0);
     /* smaller bottle image */
   }
 
@@ -422,8 +417,6 @@ html {
 
   .bottle {
     height: 500px;
-    will-change: transform;
-  transform: translateZ(0);
   }
 
   /* Second Section */
@@ -480,8 +473,6 @@ html {
   .bottle {
     height: 200px;
     margin-top: -20%;
-    will-change: transform;
-  transform: translateZ(0);
   }
 
   .secondsection {
@@ -523,8 +514,6 @@ html {
 
   .bottle {
     height: 350px;
-    will-change: transform;
-   transform: translateZ(0);
   }
 
   

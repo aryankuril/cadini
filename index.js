@@ -99,7 +99,7 @@ window.addEventListener("scroll", () => {
   const heroTop = heroText.getBoundingClientRect().top;
   gsap.to(".navbar", {
     y: heroTop <= 0 ? 0 : -100,
-    duration: 0.8,             // increased duration for smoother transition
+    duration: 0.7,             // increased duration for smoother transition
     ease: "power3.out",        // smoother easing
     overwrite: "auto"
   });
