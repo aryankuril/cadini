@@ -99,7 +99,7 @@ window.addEventListener("scroll", () => {
   const heroTop = heroText.getBoundingClientRect().top;
   gsap.to(".navbar", {
     y: heroTop <= 0 ? 0 : -100,
-    duration: 0.7,             // increased duration for smoother transition
+    duration: 0.8,             // increased duration for smoother transition
     ease: "power3.out",        // smoother easing
     overwrite: "auto"
   });
@@ -161,3 +161,20 @@ window.addEventListener("scroll", () => {
     overwrite: "auto"
   });
 });
+
+
+const section = document.querySelector('.secondsection');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      section.classList.add('animate-lines');
+    } else {
+      section.classList.remove('animate-lines');
+    }
+  });
+}, {
+  threshold: 0.5
+});
+
+observer.observe(section);

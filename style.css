@@ -72,10 +72,11 @@ html {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+  
 }
 
 .logo-center {
-  height: 50px;
+  width:200px;
   object-fit: contain;
   display: block;
 }
@@ -151,6 +152,8 @@ html {
   position: absolute;
   top: 70%;
   left: 50%;
+  will-change: transform;
+  /* transform: translateZ(0); */
   transform: translate(-50%, -50%);
   z-index: 150;
 }
@@ -184,13 +187,91 @@ html {
   color: #3A2021;
 }
 
-.secondsection .text .dark {
+@keyframes slideInLeftTop {
+  0% {
+    transform: translate(-100px, -100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRightTop {
+  0% {
+    transform: translate(100px, -100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+}
+@keyframes slideOutLeftTop {
+  0% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-100px, -100px);
+    opacity: 0;
+  }
+}
+
+@keyframes slideOutRightTop {
+  0% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(100px, -100px);
+    opacity: 0;
+  }
+}
+
+
+.secondsection .line {
+  opacity: 0;
+  transform: translate(0, 0);
+  animation-fill-mode: forwards;
+}
+
+/* Animate IN */
+.secondsection.animate-lines .line1 {
+  animation: slideInLeftTop 1s ease-out forwards;
+  animation-delay: 0.2s;
+}
+
+.secondsection.animate-lines .line2 {
+  animation: slideInRightTop 1s ease-out forwards;
+  animation-delay: 0.6s;
+}
+
+.secondsection.animate-lines .line3 {
+  animation: slideInRightTop 1s ease-out forwards;
+  animation-delay: 1s;
+}
+/* Animate OUT */
+.secondsection:not(.animate-lines) .line1 {
+  animation: slideOutLeftTop 0.8s ease-in forwards;
+}
+
+/* Animate OUT */
+.secondsection:not(.animate-lines) .line1 {
+  animation: slideOutLeftTop 0.8s ease-in forwards;
+}
+
+
+
+.secondsection .dark {
   color: #3A2021;
 }
 
-.secondsection .text .light {
+.secondsection .light {
   color: #A6A6A6;
 }
+
 
 
 /* Hide hamburger by default */
@@ -289,6 +370,8 @@ html {
 
   .bottle {
     height: 800px;
+    will-change: transform;
+  transform: translateZ(0);
     /* smaller bottle image */
   }
 
@@ -339,6 +422,8 @@ html {
 
   .bottle {
     height: 500px;
+    will-change: transform;
+  transform: translateZ(0);
   }
 
   /* Second Section */
@@ -395,6 +480,8 @@ html {
   .bottle {
     height: 200px;
     margin-top: -20%;
+    will-change: transform;
+  transform: translateZ(0);
   }
 
   .secondsection {
@@ -436,6 +523,8 @@ html {
 
   .bottle {
     height: 350px;
+    will-change: transform;
+   transform: translateZ(0);
   }
 
   
