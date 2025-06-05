@@ -84,7 +84,7 @@ updateSectionPositions(); // initial call
   let progress = (scrollY - scrollStart - 100) / scrollRange;
   progress = Math.min(Math.max(progress, 0), 1); // Clamp between 0 and 1
 
-  const translateY = moveDistance * progress - 80;
+  const translateY = moveDistance * progress - 150;
 
 
 smoothBottleY(translateY);
