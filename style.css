@@ -8,9 +8,6 @@
 body,
 html {
   height: 100%;
-  /* Enough scroll space */
-  font-family: 'Arial', sans-serif;
-  background-color: black;
   color: white;
   background: url('img/1\ section\ background.svg') no-repeat center center/cover;
   z-index: 100;
@@ -136,7 +133,7 @@ html {
   height: 30%;
   display: flex;
   flex-direction: column;
-  margin-top:-150px;
+  margin-top:-160px;
   text-align: center;
   line-height: 1; /* Keeps text tight */
   z-index: 100;
@@ -161,10 +158,11 @@ html {
   top: calc(62% + 220px); /* Pushes it below the bottle */
   left: 49%;
   transform: translateX(-50%);
-  z-index: 999;
+  z-index:999;
 }
 
 .view-more-btn {
+
   padding: 12px 28px;
    font-family: 'Optima LT Pro';
   background-color: white;
@@ -200,6 +198,7 @@ html {
 @media (max-width: 480px) {
   .view-more-wrapper {
     top: calc(20% + 700px); /* even less for very small screens */
+    
   }
 
   .view-more-btn {
@@ -522,7 +521,7 @@ html {
 
   .bottle {
     height: 200px;
-    margin-top: -20%;
+    margin-top: -10%;
   }
 
   .secondsection {
