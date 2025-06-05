@@ -45,6 +45,9 @@ window.addEventListener("scroll", () => {
   const heroText = document.querySelector(".hero-text");
   const bottle = document.querySelector(".bottle");
 
+  // ✅ Detect mobile
+  const isMobile = window.innerWidth <=800;
+
     // Place this at the top, outside the scroll listener, only once
 
 
@@ -84,8 +87,14 @@ updateSectionPositions(); // initial call
   let progress = (scrollY - scrollStart - 100) / scrollRange;
   progress = Math.min(Math.max(progress, 0), 1); // Clamp between 0 and 1
 
-  const translateY = moveDistance * progress - 150;
+let translateY;
 
+// ✅ Assign conditionally
+if (isMobile) {
+  translateY = moveDistance * progress - 150; // mobile
+} else {
+  translateY = moveDistance * progress - 80; // desktop
+}
 
 smoothBottleY(translateY);
 
