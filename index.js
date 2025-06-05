@@ -46,7 +46,7 @@ window.addEventListener("scroll", () => {
   const bottle = document.querySelector(".bottle");
 
   // ✅ Detect mobile
-  const isMobile = window.innerWidth <=800;
+  const isMobile = window.innerWidth <= 768;
 
     // Place this at the top, outside the scroll listener, only once
 
