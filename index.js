@@ -100,57 +100,30 @@ smoothBottleY(translateY);
   });
 
   // 🔥 Zoom-out and fade-out hero-text + zoom-in logo-center
-// 🔥 Hero Text Zoom-out → Then Move Up + Fade
-const zoomStart = 0;
-const zoomEnd = 150;
-const moveStart = 150;
-const moveEnd = 300;
+ // 🔥 Zoom-out and fade-out hero-text + zoom-in logo-center
+  const triggerStart = 50;
+  const triggerEnd = 200;
+  let logoProgress = (scrollY - triggerStart) / (triggerEnd - triggerStart);
+  logoProgress = Math.min(Math.max(logoProgress, 0), 1); // Clamp 0-1
 
-let zoomProgress = (scrollY - zoomStart) / (zoomEnd - zoomStart);
-zoomProgress = Math.min(Math.max(zoomProgress, 0), 1);
-
-let moveProgress = (scrollY - moveStart) / (moveEnd - moveStart);
-moveProgress = Math.min(Math.max(moveProgress, 0), 1);
-
-// Phase 1: Zoom out in place
-if (scrollY < moveStart) {
   gsap.to(".hero-text", {
-    scale: 1 - zoomProgress * 0.7,   // shrink to 0.3
-    y: 0,
-    opacity: 1,
-    duration: 0.3,
-    ease: "power2.out",
+    y: -logoProgress * 100,
+    scale: 1 - logoProgress * 0.99,
+    opacity: 1 - logoProgress,
+    duration: 0.5,             // increased duration for smoother fade
+    ease: "power3.out",
     overwrite: "auto"
   });
-}
 
-// Phase 2: Move up & fade out
-else {
-  gsap.to(".hero-text", {
-    y: -moveProgress * 150,          // move up
-    opacity: 1 - moveProgress,       // fade out
-    scale: 0.2,                      // keep it small
-    duration: 0.3,
-    ease: "power2.out",
+  gsap.to(".logo-center", {
+    scale: logoProgress,
+    opacity: logoProgress,
+    duration: 0.5,
+    ease: "power3.out",
     overwrite: "auto"
   });
-}
-
-// Logo comes in as hero-text fades out
-const logoStart = 0;
-const logoEnd = 200;
-
-const logoProgress = Math.min(Math.max((scrollY - logoStart) / (logoEnd - logoStart), 0), 1);
-
-gsap.to(".logo-center", {
-  scale: logoProgress,
-  opacity: logoProgress,
-  duration: 0.4,
-  ease: "power2.out",
-  overwrite: "auto"
 });
 
-});
 
 
 // Add class when section is in view
