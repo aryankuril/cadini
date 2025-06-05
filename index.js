@@ -3,6 +3,13 @@ function toggleMenu() {
   menu.classList.toggle("show");
 }
 
+document.querySelector('.view-more-btn').addEventListener('click', () => {
+  document.querySelector('.secondsection').scrollIntoView({ 
+    behavior: 'smooth' 
+  });
+});
+
+
 // Initial load animation for hero text
 gsap.from(".hero-text", {
   opacity: 0,
@@ -16,72 +23,19 @@ gsap.from(".hero-text", {
 // Hide logo initially
 gsap.set(".logo-center", { scale: 0, opacity: 0 });
 
-// Second section line animations – initial state
-// gsap.set(".line1", { x: -150, opacity: 0 });
-// gsap.set(".line2", { x: 150, opacity: 0 });
-// gsap.set(".line3", { x: 150, opacity: 0 });
-
-// Animate second section lines on scroll into view
-// Animate second section lines on scroll into/out of view
 const secondObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
-    // if (entry.isIntersecting) {
-    //   // Animate lines in
-    //   gsap.to(".line1", {
-    //     x: 0,
-    //     opacity: 1,
-    //     duration: 1.3,
-    //     ease: "expo.out",
-    //     overwrite: "auto"
-    //   });
-    //   gsap.to(".line2", {
-    //     x: 0,
-    //     opacity: 1,
-    //     duration: 1.3,
-    //     delay: 0.4,
-    //     ease: "expo.out",
-    //     overwrite: "auto"
-    //   });
-    //   gsap.to(".line3", {
-    //     x: 0,
-    //     opacity: 1,
-    //     duration: 1.3,
-    //     delay: 0.8,
-    //     ease: "expo.in",
-    //     overwrite: "auto"
-    //   });
-    // } else {
-    //   // Animate lines out (reverse effect)
-    //   gsap.to(".line3", {
-    //     x: 150,
-    //     opacity: 0,
-    //     duration: 1.3,
-    //     ease: "expo.in",
-    //     overwrite: "auto"
-    //   });
-    //   gsap.to(".line2", {
-    //     x: 150,
-    //     opacity: 0,
-    //     duration: 1.3,
-    //     delay: 0.4,
-    //     ease: "expo.in",
-    //     overwrite: "auto"
-    //   });
-    //   gsap.to(".line1", {
-    //     x: -150,
-    //     opacity: 0,
-    //     duration: 1.3,
-    //     delay: 0.8,
-    //     ease: "expo.in",
-    //     overwrite: "auto"
-    //   });
-    // }
+
   });
 }, {
   threshold: 0.5
 });
 secondObserver.observe(document.querySelector('.secondsection'));
 
+const smoothBottleY = gsap.quickTo(".bottle", "y", {
+  duration: 0.6,
+  ease: "power3.out"
+});
 
 // Scroll-based effects
 window.addEventListener("scroll", () => {
@@ -92,10 +46,7 @@ window.addEventListener("scroll", () => {
   const bottle = document.querySelector(".bottle");
 
     // Place this at the top, outside the scroll listener, only once
-const smoothBottleY = gsap.quickTo(".bottle", "y", {
-  duration: 0.6,
-  ease: "power3.out"
-});
+
 
   const scaleValue = Math.max(1 - scrollY / 500, 0.5);
 
@@ -149,45 +100,75 @@ smoothBottleY(translateY);
   });
 
   // 🔥 Zoom-out and fade-out hero-text + zoom-in logo-center
-  const triggerStart = 50;
-  const triggerEnd = 200;
-  let logoProgress = (scrollY - triggerStart) / (triggerEnd - triggerStart);
-  logoProgress = Math.min(Math.max(logoProgress, 0), 1); // Clamp 0-1
+// 🔥 Hero Text Zoom-out → Then Move Up + Fade
+const zoomStart = 0;
+const zoomEnd = 150;
+const moveStart = 150;
+const moveEnd = 300;
 
+let zoomProgress = (scrollY - zoomStart) / (zoomEnd - zoomStart);
+zoomProgress = Math.min(Math.max(zoomProgress, 0), 1);
+
+let moveProgress = (scrollY - moveStart) / (moveEnd - moveStart);
+moveProgress = Math.min(Math.max(moveProgress, 0), 1);
+
+// Phase 1: Zoom out in place
+if (scrollY < moveStart) {
   gsap.to(".hero-text", {
-    y: -logoProgress * 100,
-    scale: 1 - logoProgress * 0.99,
-    opacity: 1 - logoProgress,
-    duration: 0.5,             // increased duration for smoother fade
-    ease: "power3.out",
+    scale: 1 - zoomProgress * 0.7,   // shrink to 0.3
+    y: 0,
+    opacity: 1,
+    duration: 0.3,
+    ease: "power2.out",
     overwrite: "auto"
   });
+}
 
-  gsap.to(".logo-center", {
-    scale: logoProgress,
-    opacity: logoProgress,
-    duration: 0.5,
-    ease: "power3.out",
+// Phase 2: Move up & fade out
+else {
+  gsap.to(".hero-text", {
+    y: -moveProgress * 150,          // move up
+    opacity: 1 - moveProgress,       // fade out
+    scale: 0.2,                      // keep it small
+    duration: 0.3,
+    ease: "power2.out",
     overwrite: "auto"
   });
+}
+
+// Logo comes in as hero-text fades out
+const logoStart = 0;
+const logoEnd = 200;
+
+const logoProgress = Math.min(Math.max((scrollY - logoStart) / (logoEnd - logoStart), 0), 1);
+
+gsap.to(".logo-center", {
+  scale: logoProgress,
+  opacity: logoProgress,
+  duration: 0.4,
+  ease: "power2.out",
+  overwrite: "auto"
+});
+
 });
 
 
-const section = document.querySelector('.secondsection');
+// Add class when section is in view
+  const section = document.querySelector('.secondsection');
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
+  window.addEventListener('scroll', () => {
+    const sectionTop = section.getBoundingClientRect().top;
+    const windowHeight = window.innerHeight;
+
+    if (sectionTop < windowHeight - 100) {
       section.classList.add('animate-lines');
+      section.classList.remove('fadeout-lines');
     } else {
       section.classList.remove('animate-lines');
+      section.classList.add('fadeout-lines');
     }
   });
-}, {
-  threshold: 0.5
-});
 
-observer.observe(section);
 
 // function toggleMenu() {
 //   const menu = document.getElementById("mobileMenu");

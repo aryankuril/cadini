@@ -1,4 +1,4 @@
-/* Reset styles */
+
 * {
   margin: 0;
   padding: 0;
@@ -128,31 +128,84 @@ html {
   align-items: center;
   position: relative;
   overflow: hidden;
-
 }
 
 .hero-text {
-  margin-top: 20px;
-  font-size: 200px;
-  font-weight: bold;
-  letter-spacing: 5px;
+  width: 100%;
+  /* max-width: 1200px; */
+  height: 30%;
+  display: flex;
+  flex-direction: column;
+  margin-top:-150px;
   text-align: center;
-  margin-bottom: 300px;
-  z-index: 2000;
+  line-height: 1; /* Keeps text tight */
+  z-index: 100;
   pointer-events: none;
   cursor: default;
 }
-
 
 
 /* Bottle Image */
 .bottle {
   height: 400px;
   position: absolute;
-  top: 70%;
+  top: 66%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 150;
+  z-index: 1200;
+}
+
+
+.view-more-wrapper {
+  position: absolute;
+  top: calc(62% + 220px); /* Pushes it below the bottle */
+  left: 49%;
+  transform: translateX(-50%);
+  z-index: 1500;
+}
+
+.view-more-btn {
+  padding: 12px 28px;
+   font-family: 'Optima LT Pro';
+  background-color: white;
+  color: #231f20;
+  border: none;
+  font-size: 16px;
+  /* border-radius: 1px; */
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.view-more-btn:hover {
+  /* background-color: #231f20;
+   color: white; */
+   background-color: rgb(61, 61, 61);
+   color: white;
+   /* border-color: #000; */
+  transform: scale(1.05);
+}
+
+/* 🔽 Mobile Responsive Tweaks */
+@media (max-width: 768px) {
+  .view-more-wrapper {
+    top: calc(20% + 700px); /* slightly less space on mobile */
+  }
+
+  .view-more-btn {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .view-more-wrapper {
+    top: calc(20% + 700px); /* even less for very small screens */
+  }
+
+  .view-more-btn {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
 }
 
 
@@ -170,7 +223,7 @@ html {
 }
 
 .secondsection .text {
-  margin-top: -280px;
+  margin-top: -350px;
   /* Adjust this value as needed */
 }
 
@@ -181,84 +234,80 @@ html {
   line-height: 80px;
   text-transform: capitalize;
   font-family: 'Optima LT Pro';
-  color: #3A2021;
+  color:#231f20;
 }
 
-@keyframes slideInLeftTop {
+@keyframes fadeInLeft {
   0% {
-    transform: translate(-100px, -100px);
+    transform: translateX(-80px);
     opacity: 0;
   }
   100% {
-    transform: translate(0, 0);
+    transform: translateX(0);
     opacity: 1;
-  }
-}
-
-@keyframes slideInRightTop {
-  0% {
-    transform: translate(100px, -100px);
-    opacity: 0;
-  }
-  100% {
-    transform: translate(0, 0);
-    opacity: 1;
-  }
-}
-@keyframes slideOutLeftTop {
-  0% {
-    transform: translate(0, 0);
-    opacity: 1;
-  }
-  100% {
-    transform: translate(-100px, -100px);
-    opacity: 0;
   }
 }
 
-@keyframes slideOutRightTop {
+@keyframes fadeInRight {
   0% {
-    transform: translate(0, 0);
+    transform: translateX(80px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes fadeOutLeft {
+  0% {
+    transform: translateX(0);
     opacity: 1;
   }
   100% {
-    transform: translate(100px, -100px);
+    transform: translateX(-80px);
     opacity: 0;
   }
 }
+
+@keyframes fadeOutRight {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(80px);
+    opacity: 0;
+  }
+}
+
+
 
 
 .secondsection .line {
   opacity: 0;
-  transform: translate(0, 0);
+  transform: translateX(0);
   animation-fill-mode: forwards;
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
 }
-
-/* Animate IN */
 .secondsection.animate-lines .line1 {
-  animation: slideInLeftTop 1s ease-out forwards;
+  animation-name: fadeInLeft;
   animation-delay: 0.2s;
 }
 
 .secondsection.animate-lines .line2 {
-  animation: slideInRightTop 1s ease-out forwards;
+  animation-name: fadeInRight;
   animation-delay: 0.6s;
 }
 
 .secondsection.animate-lines .line3 {
-  animation: slideInRightTop 1s ease-out forwards;
+  animation-name: fadeInLeft;
   animation-delay: 1s;
 }
-/* Animate OUT
-.secondsection:not(.animate-lines) .line1 {
-  animation: slideOutLeftTop 0.8s ease-in forwards;
-} */
-
-
 
 
 .secondsection .dark {
-  color: #3A2021;
+  color: #231f20;
 }
 
 .secondsection .light {
@@ -458,6 +507,11 @@ html {
 
   .hero {
     height: 60vh;
+    width: 80%;
+    margin: auto;
+    display: flex;
+
+
   }
 
   .hero-text {
@@ -503,13 +557,14 @@ html {
   }
 
   .hero-text {
+    margin-top: 50px;
     font-size: 50px;
     letter-spacing: 1px;
     margin-bottom: 60px;
   }
 
   .bottle {
-    height: 350px;
+    height: 450px;
   }
 
   
