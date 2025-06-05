@@ -249,10 +249,10 @@ html {
   animation: slideInRightTop 1s ease-out forwards;
   animation-delay: 1s;
 }
-/* Animate OUT */
+/* Animate OUT
 .secondsection:not(.animate-lines) .line1 {
   animation: slideOutLeftTop 0.8s ease-in forwards;
-}
+} */
 
 
 
