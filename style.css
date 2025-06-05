@@ -522,7 +522,7 @@ html {
 
   .bottle {
     height: 200px;
-    margin-top: -10%;
+    margin-top: -3%;
   }
 
   .secondsection {
@@ -557,13 +557,16 @@ html {
   }
 
   .hero-text {
-    margin-top: 50px;
+    margin-top: 40px;
     font-size: 50px;
     letter-spacing: 1px;
     margin-bottom: 80px;
   }
 
   .bottle {
+    /* top: 70%;
+    /* left: 50%; */
+    /* position: absolute; */ 
     height: 450px;
   }
   
