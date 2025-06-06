@@ -12,10 +12,9 @@ html {
   background: url('img/1\ section\ background.svg') no-repeat center center/cover;
   z-index: 100;
    scroll-behavior: smooth;
+   transition: background 0.5s ease;
 }
 
-/* Navbar Styling */
-/* Updated Navbar Styling */
 /* Navbar Base */
 .navbar {
   width: 100%;
@@ -23,9 +22,11 @@ html {
   position: fixed;
   top: 0;
   background-color: white;
-  z-index: 500;
+  z-index: 100;
   border-bottom: 1px solid #e0e0e0;
   transform: translateY(-100%);
+  transition: transform 0.1s ease;
+  
 }
 
 .navbar-container {
@@ -143,14 +144,29 @@ html {
 
 
 /* Bottle Image */
-.bottle {
+/* .bottle- {
+  position: fixed;
   height: 400px;
   position: absolute;
   top: 66%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1200;
-}
+} */
+   .bottle {
+      position: fixed;
+      top: 70%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 300px;
+      height: auto;
+      z-index: 1200;
+      pointer-events: none;
+    }
+
+
+
+
 
 
 .view-more-wrapper {
@@ -292,26 +308,31 @@ html {
   justify-content: center;
   align-items: center;
   background: url('img/2 section background.svg') no-repeat center center/cover;
-  position: relative;
   text-align: center;
   padding: 60px 20px;
-  z-index: 600;
-}
-
-.secondsection .text {
-  margin-top: -350px;
-  /* Adjust this value as needed */
+  z-index: 200;
 }
 
 .secondsection .text h2 {
-  font-size: 80px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 80px;
-  text-transform: capitalize;
-  font-family: 'Optima LT Pro';
-  color:#231f20;
+color: #3A2021;
+font-family: "Optima LT Pro";
+font-size: 60px;
+font-style: normal;
+font-weight: 400;
+line-height: 60px; /* 118% */
+margin-top: -250px;
 }
+
+.line span.dark {
+  font-weight: bold;
+  color: #3A2021;
+}
+
+.line span.light {
+  font-weight: 300;
+  color: #A6A6A6;
+}
+
 
 @keyframes fadeInLeft {
   0% {
@@ -380,6 +401,21 @@ html {
   animation-name: fadeInLeft;
   animation-delay: 1s;
 }
+.secondsection.reverse-lines .line1 {
+  animation-name: fadeOutLeft;
+  animation-delay: 0.2s;
+}
+
+.secondsection.reverse-lines .line2 {
+  animation-name: fadeOutRight;
+  animation-delay: 0.6s;
+}
+
+.secondsection.reverse-lines .line3 {
+  animation-name: fadeOutLeft;
+  animation-delay: 1s;
+}
+
 
 
 .secondsection .dark {
@@ -584,7 +620,7 @@ html {
   }
 
   .hero {
-    height: 60vh;
+    height: 100vh;
     width: 80%;
     margin: auto;
     display: flex;
@@ -622,7 +658,7 @@ html {
   .secondsection .text h2 {
     font-size: 30px;
     line-height: 45px;
-    margin-top: -50px;
+    margin-top: -250px;
   }
 }
 
@@ -636,7 +672,7 @@ html {
   }
 
   .hero-text {
-    margin-top: 20px;
+    margin-top: -250px;
     font-size: 50px;
     letter-spacing: 1px;
     margin-bottom: 80px;
@@ -646,8 +682,8 @@ html {
     /* top: 70%;
     left: 50%;
     /* position: absolute; */ 
-     left: 50%;
-    height: 450px;
+     left: 51%;
+    height: 500px;
   }
   
 
