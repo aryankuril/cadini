@@ -164,7 +164,7 @@ html {
 
 
 .view-more-btn {
-  display: flex;
+  display:  none;
   gap: 10px;
   padding: 12px 28px;
    font-family: 'Optima LT Pro';
@@ -176,59 +176,6 @@ html {
   cursor: pointer;
   transition: all 0.8s ease;
 }
-
-.scroll-btn {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 40px;
-  height: 150px;
-  background-color: white;
-  color: black;
-  font-family: 'Optima', sans-serif;
-  border-radius: 40px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1px;
-  font-size: 15px;
-  cursor: pointer;
-  border: none;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-  z-index: 10;
- transition: all 0.8s ease;
- 
-}
-
-.scroll-btn span svg {
-  width: 14px;
-  height: 12px;
-  display: block;
-  fill: black;
-}
-
-/* ✅ Mobile Responsive Styles */
-@media (max-width: 600px) {
-  .scroll-btn {
-    width: 32px;
-    height: 120px;
-    bottom: 15px;
-    right: 15px;
-    font-size: 12px;
-    border-radius: 30px;
-    gap: 0;
-  }
-
-  .scroll-btn span svg {
-    width: 12px;
-    height: 10px;
-  }
-}
-
-
-
-
 
 .view-more-btn:hover {
    background-color: transparent;
@@ -261,7 +208,7 @@ html {
 }
 
 
-.scroll-down {
+/* .scroll-down-{
   height: 50px;
   width: 30px;
   border: 2px solid white;
@@ -270,7 +217,23 @@ html {
   bottom: 25px;
   border-radius: 50px;
   cursor: pointer;
-  display: flex;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: all 1s ease;
+  z-index: 100;
+} */
+.scroll-down {
+  height: 50px;
+  width: 30px;
+  border: 2px solid white;
+  position: absolute;
+  left: 50%;
+  bottom: 25px;
+  border-radius: 50px;
+  cursor: pointer;
+  display:flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
