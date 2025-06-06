@@ -12,7 +12,7 @@ document.querySelector('.scroll-down').addEventListener('click', () => {
 
 
 
-// Initial load animation for hero text
+// Initial load animation for hero text 
 gsap.from(".hero-text", {
   opacity: 0,
   y: 40,
@@ -36,7 +36,7 @@ secondObserver.observe(document.querySelector('.secondsection'));
 
 const smoothBottleY = gsap.quickTo(".bottle", "y", {
   duration: 0.8,
-  ease: "power4.out"
+  ease: "power2.inout"
 });
 
 // Scroll-based effects
