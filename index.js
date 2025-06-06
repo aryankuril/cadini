@@ -4,9 +4,8 @@ function toggleMenu() {
 }
 
 document.querySelector('.scroll-down').addEventListener('click', () => {
-  window.scrollTo({
-    top: document.body.scrollHeight - window.innerHeight,
-    behavior: 'smooth'
+  document.querySelector('.secondsection').scrollIntoView({ 
+    behavior: 'smooth' 
   });
 });
 
