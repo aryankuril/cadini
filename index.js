@@ -35,7 +35,7 @@ const secondObserver = new IntersectionObserver((entries) => {
 secondObserver.observe(document.querySelector('.secondsection'));
 
 const smoothBottleY = gsap.quickTo(".bottle", "y", {
-  duration: 0.8,
+  duration: 0.3,
   ease: "power2.inout"
 });
 
