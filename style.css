@@ -208,7 +208,7 @@ html {
 }
 
 
-/* .scroll-down-{
+.scroll-down{
   height: 50px;
   width: 30px;
   border: 2px solid white;
@@ -223,23 +223,8 @@ html {
   overflow: hidden;
   transition: all 1s ease;
   z-index: 100;
-} */
-.scroll-down {
-  height: 50px;
-  width: 30px;
-  border: 2px solid white;
-  position: absolute;
-  left: 50%;
-  bottom: 25px;
-  border-radius: 50px;
-  cursor: pointer;
-  display:flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  transition: all 1s ease;
-  z-index: 100;
 }
+
 
 .scroll-icon {
   transform: translate(-80%, -100%) rotate(45deg);
