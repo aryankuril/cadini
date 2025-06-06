@@ -36,7 +36,7 @@ secondObserver.observe(document.querySelector('.secondsection'));
 
 const smoothBottleY = gsap.quickTo(".bottle", "y", {
   duration: 0.3,
-  ease: "power2.inout"
+  ease: "power3.inout"
 });
 
 // Scroll-based effects
