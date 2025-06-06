@@ -93,7 +93,7 @@ let translateY;
 
 // ✅ Assign conditionally
 if (isMobile) {
-  translateY = moveDistance * progress - 120; // mobile
+  translateY = moveDistance * progress - 150; // mobile
 } else {
   translateY = moveDistance * progress - 80; // desktop
 }

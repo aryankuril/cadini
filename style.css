@@ -214,7 +214,7 @@ html {
   border: 2px solid white;
   position: absolute;
   left: 96%;
-  top: calc(62% + 100px);
+  top: calc(70% + 100px);
   z-index:100;
   border-radius: 50px;
   cursor: pointer;
@@ -270,7 +270,7 @@ html {
     width: 24px;
     height: 40px;
     left: 90%;
-    bottom: 15px;
+    bottom: 20px;
     border-width: 1.5px;
   }
 
@@ -644,8 +644,9 @@ html {
 
   .bottle {
     /* top: 70%;
-    /* left: 50%; */
+    left: 50%;
     /* position: absolute; */ 
+     left: 54%;
     height: 450px;
   }
   
