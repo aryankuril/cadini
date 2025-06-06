@@ -3,11 +3,14 @@ function toggleMenu() {
   menu.classList.toggle("show");
 }
 
-document.querySelector('.view-more-btn').addEventListener('click', () => {
-  document.querySelector('.secondsection').scrollIntoView({ 
-    behavior: 'smooth' 
+document.querySelector('.scroll-down').addEventListener('click', () => {
+  window.scrollTo({
+    top: document.body.scrollHeight - window.innerHeight,
+    behavior: 'smooth'
   });
 });
+
+
 
 
 // Initial load animation for hero text
