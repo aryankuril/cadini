@@ -214,7 +214,8 @@ html {
   border: 2px solid white;
   position: absolute;
   left: 96%;
-  bottom: 25px;
+  top: calc(62% + 100px);
+  z-index:100;
   border-radius: 50px;
   cursor: pointer;
   display: flex;
@@ -222,7 +223,7 @@ html {
   justify-content: center;
   overflow: hidden;
   transition: all 1s ease;
-  z-index: 100;
+  
 }
 
 
@@ -285,7 +286,8 @@ html {
 
 /* /////////////////////2 section /////////////////////////////*/
 .secondsection {
-  height: 100%;
+   min-height: 100vh;
+  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -604,8 +606,8 @@ html {
 
   .secondsection {
     padding: 20px 10px;
-    min-height: 20vh;
-    height: 90%;
+     min-height: 100vh;
+     height: auto;
     display: flex;
     flex-direction: column;
     font-family: "optima lt pro" ;
