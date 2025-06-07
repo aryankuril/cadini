@@ -302,6 +302,7 @@ html {
 
 /* /////////////////////2 section /////////////////////////////*/
 .secondsection {
+   position: relative;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -679,12 +680,6 @@ margin-top: -250px;
   }
 
 .bottle {
-  left: 50%; /* Keep it truly centered */
-  transform: translate(-50%, -50%);
   height: 450px;
 }
-
-  
-
-  
 }

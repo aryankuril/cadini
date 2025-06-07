@@ -1,17 +1,20 @@
+// 🔄 Toggle Mobile Menu
 function toggleMenu() {
   const menu = document.getElementById("mobileMenu");
   menu.classList.toggle("show");
 }
+
+// 🧭 Smooth Scroll to Second Section
 document.querySelector('.scroll-down').addEventListener('click', () => {
-  document.querySelector('.secondsection').scrollIntoView({ 
-    behavior: 'smooth' 
+  document.querySelector('.secondsection').scrollIntoView({
+    behavior: 'smooth'
   });
 });
-// Scroll trigger for second section animation
+
+// 🎯 Animate second section lines on scroll
 window.addEventListener('scroll', () => {
   const section = document.querySelector('.secondsection');
-  const sectionTop = section.getBoundingClientRect().top;
-  const sectionBottom = section.getBoundingClientRect().bottom;
+  const { top: sectionTop, bottom: sectionBottom } = section.getBoundingClientRect();
   const triggerPoint = window.innerHeight * 0.8;
 
   if (sectionTop < triggerPoint && sectionBottom > 100) {
@@ -23,7 +26,7 @@ window.addEventListener('scroll', () => {
   }
 });
 
-// Initial load animation for hero text 
+// 💨 Initial hero text animation
 gsap.from(".hero-text", {
   opacity: 0,
   y: 40,
@@ -33,69 +36,73 @@ gsap.from(".hero-text", {
   overwrite: "auto"
 });
 
-// Hide logo initially
+// 👻 Hide logo at start
 gsap.set(".logo-center", { scale: 0, opacity: 0 });
 
-// Scroll animations (hero text scaling, navbar & logo effects)
+// 🧩 Scroll animation helpers
 let heroTopAbs, secondTopAbs, heroHeight, secondHeight;
+
 function updateSectionPositions() {
   const hero = document.querySelector(".hero");
   const secondSection = document.querySelector(".secondsection");
+
   heroTopAbs = hero.offsetTop;
   secondTopAbs = secondSection.offsetTop;
   heroHeight = hero.offsetHeight;
   secondHeight = secondSection.offsetHeight;
 }
+
 updateSectionPositions();
 window.addEventListener("resize", updateSectionPositions);
 
-// Throttle scroll updates
-let lastScrollY = 0;
+// 🕹️ Smooth scroll animation throttle
 let ticking = false;
 
 function handleScroll() {
   const scrollY = window.scrollY;
-  const hero = document.querySelector(".hero");
   const heroText = document.querySelector(".hero-text");
+  const hero = document.querySelector(".hero");
 
-  // Scale hero text
+  // Hero text scale animation
   const scaleValue = Math.max(1 - scrollY / 500, 0.5);
-  gsap.to(".hero-text", {
+  gsap.to(heroText, {
     scale: scaleValue,
-    duration: 0.7,
-    ease: "power3.out",
+    duration: 0.4,
+    ease: "power2.out",
     overwrite: "auto"
   });
 
-  // Navbar show/hide
+  // Navbar transition
   const heroTop = heroText.getBoundingClientRect().top;
   gsap.to(".navbar", {
     y: heroTop <= 0 ? 0 : -100,
-    duration: 0.7,
-    ease: "power3.out",
+    duration: 0.4,
+    ease: "power2.out",
     overwrite: "auto"
   });
 
-  // Logo transition
+  // Logo transition logic
   const triggerStart = 50;
   const triggerEnd = 200;
   let logoProgress = (scrollY - triggerStart) / (triggerEnd - triggerStart);
   logoProgress = Math.min(Math.max(logoProgress, 0), 1);
 
-  gsap.to(".hero-text", {
+  // Hero text zoom-out and fade
+  gsap.to(heroText, {
     y: -logoProgress * 100,
     scale: 1 - logoProgress * 0.99,
     opacity: 1 - logoProgress,
-    duration: 0.5,
-    ease: "power3.out",
+    duration: 0.4,
+    ease: "power2.out",
     overwrite: "auto"
   });
 
+  // Logo appear with scale
   gsap.to(".logo-center", {
     scale: logoProgress,
     opacity: logoProgress,
-    duration: 0.5,
-    ease: "power3.out",
+    duration: 0.4,
+    ease: "power2.out",
     overwrite: "auto"
   });
 
@@ -103,14 +110,8 @@ function handleScroll() {
 }
 
 window.addEventListener("scroll", () => {
-  lastScrollY = window.scrollY;
   if (!ticking) {
-    window.requestAnimationFrame(() => {
-      handleScroll();
-    });
+    requestAnimationFrame(handleScroll);
     ticking = true;
   }
 });
-
-
-
