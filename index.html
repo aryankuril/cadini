@@ -169,9 +169,8 @@ html {
 .bottle{
   position: fixed;
   height: 400px;
-  top: 66%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 15%;
   z-index: 1200;
 }
    /* .bottle {
@@ -356,70 +355,7 @@ margin-top: -250px;
 }
 
 
-
-
-/* Hide hamburger by default */
-/* HAMBURGER — hidden by default, shown on mobile */
-.hamburger {
-  display: none;
-  font-size: 28px;
-  cursor: pointer;
-  z-index: 1;
-  position: absolute;
-  background-color: transparent;
-  color: black;
-}
-
-
-/* NAV MENU DEFAULT (DESKTOP VIEW) */
-#mobileMenu {
-  display: flex;
-  gap: 40px;
-  position: static;
-  flex-direction: row;
-  background-color: transparent;
-  height: auto;
-  padding: 0;
-}
-
-#mobileMenu a {
-  color: #7d7d7d;
-  font-size: 16px;
-  text-decoration: none;
-}
-
-/* MOBILE STYLES */
-@media (max-width: 768px) {
-  .hamburger {
-    display: block;
-    position: absolute;
-    left: 20px;
-    top: 20px;
-  }
-
-  #mobileMenu {
-    position: fixed;
-    top: 0;
-    left: -100%;
-    width: 220px;
-    height: 100%;
-    background-color:transparent;
-    flex-direction: column;
-    gap: 20px;
-    padding: 100px 20px 20px;
-    transition: left 0.3s ease-in-out;
-    z-index: 1000;
-  }
-
-  #mobileMenu a {
-    color: white;
-    font-size: 18px;
-  }
-
-  #mobileMenu.show {
-    left: 0;
-  }
-}</style>
+</style>
 </head>
 <body>
 
