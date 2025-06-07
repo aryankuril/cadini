@@ -606,7 +606,7 @@ margin-top: -250px;
 
 .bottle {
   height: 380px;
-  width: clamp(400px, 30vw, 400px); /* ⬅️ Increased min/max size */
+   width: clamp(250px, 40vw, 400px);  /* ⬅️ Increased min/max size */
   pointer-events: none;
   will-change: transform;
   backface-visibility: hidden;
