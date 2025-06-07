@@ -678,13 +678,12 @@ margin-top: -250px;
     margin-bottom: 80px;
   }
 
-  .bottle {
-    /* top: 70%;
-    left: 50%;
-    /* position: absolute; */ 
-     left: 51%;
-    height: 500px;
-  }
+.bottle {
+  left: 50%; /* Keep it truly centered */
+  transform: translate(-50%, -50%);
+  height: 450px;
+}
+
   
 
   
