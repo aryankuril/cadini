@@ -602,9 +602,13 @@ margin-top: -250px;
     margin-bottom: 80px;
   }
 
-.bottle {
+
+.bottle{
+  position: fixed;
   width: 50%;
   height: 100vh;
-  pointer-events: none;
+  top: 80%;
+  left: 50%;
+  z-index: 1200;
 }
 } 
