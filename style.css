@@ -173,7 +173,7 @@ html {
   top: 70%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 20%;
+   width: clamp(250px, 20vw, 400px);
   height: auto;
   z-index: 1200;
   pointer-events: none;
