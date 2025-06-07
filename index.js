@@ -38,80 +38,62 @@ gsap.from(".hero-text", {
 
 // 👻 Hide logo at start
 gsap.set(".logo-center", { scale: 0, opacity: 0 });
+gsap.set("nav", { y: -100 }); // Hide navbar above screen initially
 
-// 🧩 Scroll animation helpers
-let heroTopAbs, secondTopAbs, heroHeight, secondHeight;
-
-function updateSectionPositions() {
-  const hero = document.querySelector(".hero");
-  const secondSection = document.querySelector(".secondsection");
-
-  heroTopAbs = hero.offsetTop;
-  secondTopAbs = secondSection.offsetTop;
-  heroHeight = hero.offsetHeight;
-  secondHeight = secondSection.offsetHeight;
-}
-
-updateSectionPositions();
-window.addEventListener("resize", updateSectionPositions);
-
-// 🕹️ Smooth scroll animation throttle
+// 🧩 Scroll animation
 let ticking = false;
 
 function handleScroll() {
   const scrollY = window.scrollY;
   const heroText = document.querySelector(".hero-text");
-  const hero = document.querySelector(".hero");
+  const logo = document.querySelector(".logo-center");
+  const navbar = document.querySelector("nav");
 
-  // Hero text scale animation
+  // 🧠 1. Hero Text Zoom Out
   const scaleValue = Math.max(1 - scrollY / 500, 0.5);
   gsap.to(heroText, {
     scale: scaleValue,
-    duration: 0.4,
+    duration: 0.3,
     ease: "power2.out",
-    overwrite: "auto"
+    overwrite: true
   });
 
-  // Navbar transition
-  const heroTop = heroText.getBoundingClientRect().top;
-  gsap.to(".navbar", {
-    y: heroTop <= 0 ? 0 : -100,
-    duration: 0.4,
-    ease: "power2.out",
-    overwrite: "auto"
-  });
-
-  // Logo transition logic
-  const triggerStart = 50;
-  const triggerEnd = 200;
-  let logoProgress = (scrollY - triggerStart) / (triggerEnd - triggerStart);
-  logoProgress = Math.min(Math.max(logoProgress, 0), 1);
-
-  // Hero text zoom-out and fade
-  gsap.to(heroText, {
-    y: -logoProgress * 100,
-    scale: 1 - logoProgress * 0.99,
-    opacity: 1 - logoProgress,
-    duration: 0.4,
-    ease: "power2.out",
-    overwrite: "auto"
-  });
-
-  // Logo appear with scale
-  gsap.to(".logo-center", {
+  // 🧠 2. Show Logo on Scroll (between 50px and 200px)
+  const logoProgress = Math.min(Math.max((scrollY - 50) / 150, 0), 1);
+  gsap.to(logo, {
     scale: logoProgress,
     opacity: logoProgress,
-    duration: 0.4,
+    duration: 0.3,
     ease: "power2.out",
-    overwrite: "auto"
+    overwrite: true
   });
 
-  ticking = false;
+  // 🧠 3. Bring Navbar Down When Hero Text Reaches Top
+  const heroTop = heroText.getBoundingClientRect().top;
+
+  if (heroTop <= 0) {
+    gsap.to(navbar, {
+      y: 0,
+      duration: 0.5,
+      ease: "power3.out",
+      overwrite: true
+    });
+  } else {
+    gsap.to(navbar, {
+      y: -100,
+      duration: 0.5,
+      ease: "power3.in",
+      overwrite: true
+    });
+  }
 }
 
 window.addEventListener("scroll", () => {
   if (!ticking) {
-    requestAnimationFrame(handleScroll);
+    window.requestAnimationFrame(() => {
+      handleScroll();
+      ticking = false;
+    });
     ticking = true;
   }
 });
