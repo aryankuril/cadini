@@ -1,89 +1,58 @@
-// 🧭 Smooth Scroll to Second Section
 document.querySelector('.scroll-down').addEventListener('click', () => {
   document.querySelector('.secondsection').scrollIntoView({
     behavior: 'smooth'
   });
 });
 
-// 🔒 Initial state
-gsap.set(".logo-center", { scale: 0, opacity: 0 });
-gsap.set(".navbar", { y: -100, opacity: 0 });
 
-// 📏 Track section positions
-let heroTopAbs, secondTopAbs, heroHeight, secondHeight;
+// ⚡ Faster direct animation handles
+const quickHeroScale = gsap.quickTo(".hero-text", "scale", {
+  duration: 0.3,
+  ease: "power2.out"
+});
 
-function updateSectionPositions() {
-  const hero = document.querySelector(".hero");
-  const secondSection = document.querySelector(".secondsection");
+const quickLogoScale = gsap.quickTo(".logo-center", "scale", {
+  duration: 0.3,
+  ease: "power2.out"
+});
 
-  heroTopAbs = hero.offsetTop;
-  secondTopAbs = secondSection.offsetTop;
-  heroHeight = hero.offsetHeight;
-  secondHeight = secondSection.offsetHeight;
-}
+const quickLogoOpacity = gsap.quickTo(".logo-center", "opacity", {
+  duration: 0.3,
+  ease: "power2.out"
+});
 
-updateSectionPositions();
-window.addEventListener("resize", updateSectionPositions);
+const quickNavbarY = gsap.quickTo(".navbar", "y", {
+  duration: 0.05,
+  ease: "power2.out"
+});
 
-// 🧠 Scroll logic
-let ticking = false;
+const quickNavbarOpacity = gsap.quickTo(".navbar", "opacity", {
+  duration: 0.05,
+  ease: "power2.out"
+});
 
+// 🧠 Optimized Scroll Logic
 function handleScroll() {
   const scrollY = window.scrollY;
-  const heroText = document.querySelector(".hero-text");
-  const logo = document.querySelector(".logo-center");
-  const navbar = document.querySelector(".navbar");
 
-  // Shrink hero text scale from 1 to 0.5 smoothly
+  // Scale hero text
   const scaleValue = Math.max(1 - scrollY / 500, 0.5);
-  gsap.to(heroText, {
-    scale: scaleValue,
-    duration: 0.3, // faster scale animation for text
-    ease: "power2.out",
-    overwrite: "auto"
-  });
+  quickHeroScale(scaleValue);
 
-  // Zoom-in logo
+  // Logo logic
   const logoStart = 100;
   const logoEnd = 300;
   let logoProgress = (scrollY - logoStart) / (logoEnd - logoStart);
   logoProgress = Math.min(Math.max(logoProgress, 0), 1);
-  gsap.to(logo, {
-    scale: logoProgress,
-    opacity: logoProgress,
-    duration: 0.3,
-    ease: "power2.out",
-    overwrite: "auto"
-  });
+  quickLogoScale(logoProgress);
+  quickLogoOpacity(logoProgress);
 
-  // Show navbar as soon as scaleValue is near 0.55 (earlier) and animate super fast
+  // Navbar logic
   if (scaleValue <= 0.55) {
-    gsap.to(navbar, {
-      y: 0,
-      opacity: 1,
-      duration: 0.05, // super quick slide down
-      ease: "power2.out",
-      overwrite: "auto"
-    });
+    quickNavbarY(0);
+    quickNavbarOpacity(1);
   } else {
-    gsap.to(navbar, {
-      y: -100,
-      opacity: 0,
-      duration: 0.05, // super quick slide up
-      ease: "power2.in",
-      overwrite: "auto"
-    });
+    quickNavbarY(-100);
+    quickNavbarOpacity(0);
   }
 }
-
-
-
-window.addEventListener("scroll", () => {
-  if (!ticking) {
-    window.requestAnimationFrame(() => {
-      handleScroll();
-      ticking = false;
-    });
-    ticking = true;
-  }
-});
