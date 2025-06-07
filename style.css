@@ -447,10 +447,6 @@ margin-top: -250px;
     /* reduce bottom margin */
   }
 
-  .bottle {
-    height: 800px;
-    /* smaller bottle image */
-  }
 
   /* Second Section */
   .secondsection {
@@ -498,9 +494,7 @@ margin-top: -250px;
     margin-bottom: 80px;
   }
 
-  .bottle {
-    height: 500px;
-  }
+
 
   /* Second Section */
   .secondsection .text h2 {
@@ -560,7 +554,6 @@ margin-top: -250px;
   }
 
   .bottle {
-    height: 200px;
     margin-top: -10%;
   }
 
