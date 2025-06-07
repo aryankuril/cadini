@@ -177,6 +177,7 @@ html {
   height: auto;
   z-index: 1200;
   pointer-events: none;
+  
 }
 
 
@@ -602,13 +603,9 @@ margin-top: -250px;
     margin-bottom: 80px;
   }
 
-
-.bottle{
-  position: fixed;
+.bottle {
   width: 50%;
   height: 100vh;
-  top: 80%;
-  left: 50%;
-  z-index: 1200;
+  pointer-events: none;
 }
 } 
