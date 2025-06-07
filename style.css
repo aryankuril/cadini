@@ -177,8 +177,6 @@ html {
   height: auto;
   z-index: 1200;
   pointer-events: none;
-  will-change: transform;
-  backface-visibility: hidden;
 }
 
 
