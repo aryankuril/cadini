@@ -173,7 +173,7 @@ html {
   top: 70%;
   left: 50%;
   transform: translate(-50%, -50%);
-   width: clamp(250px, 20vw, 400px);
+  width: 20%;
   height: auto;
   z-index: 1200;
   pointer-events: none;
@@ -606,7 +606,6 @@ margin-top: -250px;
 
 .bottle {
   height: 380px;
-   width: clamp(250px, 40vw, 400px);  /* ⬅️ Increased min/max size */
   pointer-events: none;
   will-change: transform;
   backface-visibility: hidden;
